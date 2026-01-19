@@ -1,0 +1,198 @@
+@use 'variables' as *;
+
+// ================================
+// 퍼즐 피드백 애니메이션
+// ================================
+
+// 흔들림 (오답)
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-4px);
+    }
+
+    40% {
+        transform: translateX(4px);
+    }
+
+    60% {
+        transform: translateX(-4px);
+    }
+
+    80% {
+        transform: translateX(4px);
+    }
+}
+
+// 펄스 (정답)
+@keyframes pulse-success {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+// 색상 플래시 - 정답
+@keyframes flash-success {
+    0% {
+        background-color: $white;
+    }
+
+    50% {
+        background-color: $success;
+    }
+
+    100% {
+        background-color: rgba($success, 0.15);
+    }
+}
+
+// 색상 플래시 - 오답
+@keyframes flash-error {
+    0% {
+        background-color: $white;
+    }
+
+    50% {
+        background-color: $error;
+    }
+
+    100% {
+        background-color: $white;
+    }
+}
+
+// ================================
+// 클리어 페이지 애니메이션
+// ================================
+
+// CLEAR 텍스트 확대 등장 (0.3 → 1.0)
+@keyframes clear-zoom-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+
+    70% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+// CLEAR 글로우 효과
+@keyframes clear-glow {
+
+    0%,
+    100% {
+        text-shadow:
+            0 0 10px rgba($aquamarine, 0.8),
+            0 0 20px rgba($aquamarine, 0.6),
+            0 0 30px rgba($aquamarine, 0.4);
+    }
+
+    50% {
+        text-shadow:
+            0 0 20px rgba($aquamarine, 1),
+            0 0 40px rgba($aquamarine, 0.8),
+            0 0 60px rgba($aquamarine, 0.6);
+    }
+}
+
+// ================================
+// 공통 애니메이션
+// ================================
+
+// 페이드인
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+// 페이드인 + 위로
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// 페이드인 + 스케일
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+// 슬라이드인 (왼쪽에서)
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+// 바운스
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+// 스핀 (로딩)
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

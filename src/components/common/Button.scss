@@ -1,0 +1,83 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: $font-primary;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: all $animation-fast ease;
+
+    // ================================
+    // 사이즈
+    // ================================
+    &--small {
+        padding: 8px 16px;
+        font-size: $font-size-sm;
+    }
+
+    &--medium {
+        padding: 12px 24px;
+        font-size: $font-size-base;
+    }
+
+    &--large {
+        padding: 16px 32px;
+        font-size: $font-size-lg;
+    }
+
+    // ================================
+    // 변형
+    // ================================
+    &--primary {
+        @include neubrutalism-box($aquamarine, $black);
+        color: $black;
+
+        &:hover:not(:disabled) {
+            background: $aquamarine-light;
+        }
+    }
+
+    &--secondary {
+        @include neubrutalism-box($navy, $black);
+        color: $white;
+
+        &:hover:not(:disabled) {
+            background: $navy-light;
+        }
+    }
+
+    &--ghost {
+        background: transparent;
+        border: $border-width solid $black;
+        color: $black;
+        box-shadow: none;
+
+        &:hover:not(:disabled) {
+            background: $gray-100;
+        }
+
+        &:active:not(:disabled) {
+            background: $gray-200;
+        }
+    }
+
+    // ================================
+    // 상태
+    // ================================
+    &--full {
+        width: 100%;
+    }
+
+    &--disabled,
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none !important;
+        box-shadow: $shadow-offset $shadow-offset 0 $black !important;
+    }
+}

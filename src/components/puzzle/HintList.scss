@@ -1,0 +1,215 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hint-list {
+    @include flex-column;
+    gap: 24px;
+
+    &__section {
+        @include neubrutalism-box-static($white);
+        padding: 16px;
+    }
+
+    &__title {
+        @include flex-center;
+        justify-content: flex-start;
+        gap: 8px;
+        font-family: $font-display;
+        font-size: $font-size-lg;
+        color: $navy;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid $gray-200;
+
+        &-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: $navy;
+            color: $white;
+            font-size: $font-size-sm;
+            border-radius: 4px;
+        }
+    }
+
+    &__items {
+        @include flex-column;
+        gap: 8px;
+    }
+
+    &__item {
+        @include flex-column;
+        gap: 8px;
+        padding: 10px 12px;
+        background: $gray-100;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        font-family: $font-primary;
+        font-size: $font-size-sm;
+        line-height: 1.4;
+        transition: all $animation-fast ease;
+
+        // 선택된 힌트 - 강조 스타일
+        &--selected {
+            background: rgba($aquamarine, 0.2);
+            border-color: $aquamarine;
+            box-shadow: 0 0 0 2px rgba($aquamarine, 0.3);
+
+            .hint-list__number {
+                background: $aquamarine;
+                transform: scale(1.1);
+            }
+
+            .hint-list__text {
+                color: $navy;
+                font-weight: 600;
+            }
+        }
+
+        // 완료된 힌트
+        &--completed {
+            background: rgba($success, 0.1);
+
+            .hint-list__main {
+                text-decoration: line-through;
+                color: $gray-500;
+            }
+
+            .hint-list__number {
+                background: $success;
+            }
+
+            &.hint-list__item--selected {
+                border-color: $success;
+                box-shadow: 0 0 0 2px rgba($success, 0.3);
+            }
+        }
+    }
+
+    &__main {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        cursor: pointer;
+
+        &:hover {
+            .hint-list__text {
+                color: $navy;
+            }
+        }
+    }
+
+    &__number {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: $aquamarine;
+        color: $black;
+        font-weight: 700;
+        font-size: $font-size-xs;
+        border-radius: 4px;
+        transition: all $animation-fast ease;
+    }
+
+    &__text {
+        flex: 1;
+        color: $black;
+        transition: all $animation-fast ease;
+    }
+
+    &__length {
+        flex-shrink: 0;
+        color: $gray-400;
+        font-size: $font-size-xs;
+    }
+
+    &__check {
+        flex-shrink: 0;
+        color: $success;
+        font-weight: bold;
+    }
+
+    // 추가 힌트 영역
+    &__extra {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-top: 8px;
+        border-top: 1px dashed $gray-300;
+        margin-top: 4px;
+    }
+
+    &__extra-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        background: $white;
+        border: 2px solid $gray-300;
+        border-radius: 50%;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all $animation-fast ease;
+        flex-shrink: 0;
+
+        &:hover {
+            background: rgba($warning, 0.1);
+            border-color: $warning;
+            transform: scale(1.1);
+        }
+
+        &--active {
+            background: rgba($warning, 0.2);
+            border-color: $warning;
+            box-shadow: 0 0 8px rgba($warning, 0.3);
+        }
+    }
+
+    &__extra-answer {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        background: rgba($error, 0.1);
+        border: 1px solid rgba($error, 0.3);
+        border-radius: 4px;
+        animation: fadeIn $animation-fast ease;
+    }
+
+    &__extra-label {
+        font-size: $font-size-xs;
+        color: $gray-500;
+    }
+
+    &__extra-text {
+        font-family: $font-display;
+        font-size: $font-size-lg;
+        font-weight: 400;
+        color: $error;
+        letter-spacing: 0.1em;
+    }
+
+    &__extra-dots {
+        font-size: $font-size-sm;
+        color: $gray-400;
+        letter-spacing: 0.2em;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

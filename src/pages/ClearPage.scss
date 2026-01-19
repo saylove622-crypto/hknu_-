@@ -1,0 +1,198 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+@use '../styles/animations';
+
+.clear-page {
+    min-height: 100vh;
+    @include flex-column-center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, $navy 0%, $navy-dark 100%);
+
+    // ================================
+    // 타이틀
+    // ================================
+    &__title-wrap {
+        @include flex-column-center;
+        margin-bottom: 32px;
+    }
+
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        opacity: 0;
+        transform: scale(0.3);
+        animation: clear-zoom-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        animation-delay: 0.1s;
+    }
+
+    &__text {
+        font-family: $font-display;
+        font-size: $font-size-5xl;
+        color: $white;
+        letter-spacing: 0.1em;
+        animation: clear-glow 2s ease-in-out infinite;
+        animation-delay: 0.7s;
+
+        @include mobile {
+            font-size: $font-size-4xl;
+        }
+    }
+
+    &__emoji {
+        font-size: $font-size-4xl;
+
+        @include mobile {
+            font-size: $font-size-3xl;
+        }
+    }
+
+    &__new-record {
+        margin-top: 16px;
+        padding: 8px 20px;
+        background: linear-gradient(90deg, #FFD700, #FFA500);
+        border: $border-width solid $black;
+        font-family: $font-display;
+        font-size: $font-size-lg;
+        color: $black;
+        animation: bounce 1s ease-in-out infinite;
+    }
+
+    &__all-clear {
+        margin-top: 12px;
+        padding: 10px 24px;
+        background: linear-gradient(90deg, $aquamarine, $aquamarine-light);
+        border: $border-width solid $black;
+        font-family: $font-display;
+        font-size: $font-size-base;
+        color: $black;
+        animation: pulse-success 1.5s ease-in-out infinite;
+    }
+
+    &__next-stage-btn {
+        margin-bottom: 8px;
+        animation: pulse-success 2s ease-in-out infinite;
+    }
+
+    // ================================
+    // 클리어 타임
+    // ================================
+    &__time {
+        @include flex-column-center;
+        margin-bottom: 32px;
+        opacity: 0;
+        animation: fadeIn $animation-slow ease-out forwards;
+        animation-delay: 0.5s;
+    }
+
+    &__time-label {
+        font-family: $font-primary;
+        font-size: $font-size-lg;
+        color: rgba($white, 0.7);
+        margin-bottom: 8px;
+    }
+
+    &__time-value {
+        font-family: $font-mono;
+        font-size: $font-size-4xl;
+        font-weight: 700;
+        color: $aquamarine;
+
+        @include mobile {
+            font-size: $font-size-3xl;
+        }
+    }
+
+    // ================================
+    // 콘텐츠
+    // ================================
+    &__content {
+        @include flex-column-center;
+        gap: 24px;
+        width: 100%;
+        max-width: 360px;
+        animation: fadeInUp $animation-slower ease-out forwards;
+    }
+
+    // ================================
+    // 스테이지
+    // ================================
+    &__stage {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    &__stage-badge {
+        @include neubrutalism-box-static($aquamarine);
+        padding: 8px 16px;
+        font-family: $font-display;
+        font-size: $font-size-base;
+    }
+
+    &__stage-text {
+        font-family: $font-primary;
+        font-size: $font-size-lg;
+        color: $white;
+    }
+
+    // ================================
+    // 폼
+    // ================================
+    &__form {
+        @include flex-column;
+        gap: 16px;
+        width: 100%;
+    }
+
+    &__input {
+        @include neubrutalism-input;
+        width: 100%;
+        padding: 16px 20px;
+        font-size: $font-size-lg;
+        text-align: center;
+    }
+
+    // ================================
+    // 제출 완료
+    // ================================
+    &__submitted {
+        @include flex-column;
+        gap: 16px;
+        width: 100%;
+    }
+
+    &__rank-message {
+        @include neubrutalism-box-static(rgba($aquamarine, 0.2));
+        padding: 16px;
+        text-align: center;
+        font-family: $font-primary;
+        font-size: $font-size-lg;
+        color: $white;
+        border-color: $aquamarine;
+
+        strong {
+            color: $aquamarine;
+            font-size: $font-size-2xl;
+        }
+    }
+
+    // ================================
+    // 버튼 그룹
+    // ================================
+    &__buttons {
+        display: flex;
+        gap: 12px;
+        width: 100%;
+        margin-top: 8px;
+
+        .btn {
+            flex: 1;
+        }
+
+        @include mobile {
+            flex-direction: column;
+        }
+    }
+}

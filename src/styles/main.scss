@@ -1,0 +1,67 @@
+// ================================
+// 메인 스타일 진입점
+// ================================
+
+// 기초 스타일
+@use 'variables' as *;
+@use 'reset';
+@use 'mixins' as *;
+@use 'animations';
+@use 'accessibility';
+
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+// 전역 스타일
+html,
+body,
+#root {
+    min-height: 100vh;
+}
+
+#root {
+    @include flex-column;
+}
+
+// 스크롤바 스타일링
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: $gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $navy;
+    border-radius: 4px;
+
+    &:hover {
+        background: $navy-light;
+    }
+}
+
+// 선택 영역 스타일
+::selection {
+    background: $aquamarine;
+    color: $black;
+}
+
+// 기본 컨테이너
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    @include mobile {
+        padding: 0 16px;
+    }
+}
+
+// 페이지 래퍼
+.page {
+    flex: 1;
+    @include flex-column;
+}

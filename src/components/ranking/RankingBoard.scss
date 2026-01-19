@@ -1,0 +1,108 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.ranking-board {
+    width: 100%;
+
+    &--empty {
+        @include neubrutalism-box-static($gray-100);
+        @include flex-column-center;
+        gap: 8px;
+        padding: 40px 20px;
+        text-align: center;
+
+        p {
+            font-family: $font-primary;
+            color: $gray-500;
+
+            &:first-child {
+                font-size: $font-size-lg;
+                font-weight: 600;
+                color: $gray-400;
+            }
+        }
+    }
+
+    &__list {
+        @include flex-column;
+        gap: 8px;
+    }
+
+    &__item {
+        @include neubrutalism-box-static($white);
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 20px;
+        transition: all $animation-fast ease;
+
+        &:hover {
+            transform: translateX(4px);
+        }
+
+        // 1등
+        &:first-child {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+
+            .ranking-board__nickname,
+            .ranking-board__time {
+                color: $black;
+            }
+        }
+
+        // 2등
+        &:nth-child(2) {
+            background: linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 100%);
+        }
+
+        // 3등
+        &:nth-child(3) {
+            background: linear-gradient(135deg, #CD7F32 0%, #A0522D 100%);
+
+            .ranking-board__nickname,
+            .ranking-board__time {
+                color: $white;
+            }
+        }
+
+        // 현재 사용자 하이라이트
+        &--current {
+            border-color: $aquamarine;
+            box-shadow:
+                0 0 0 3px rgba($aquamarine, 0.4),
+                $shadow-offset $shadow-offset 0 $black;
+
+            &::after {
+                content: '← 나';
+                margin-left: auto;
+                font-size: $font-size-sm;
+                color: $aquamarine-dark;
+                font-weight: 600;
+            }
+        }
+    }
+
+    &__rank {
+        flex-shrink: 0;
+        width: 40px;
+        font-size: $font-size-2xl;
+        text-align: center;
+    }
+
+    &__nickname {
+        flex: 1;
+        font-family: $font-primary;
+        font-size: $font-size-lg;
+        font-weight: 600;
+        color: $navy;
+        @include text-truncate;
+    }
+
+    &__time {
+        flex-shrink: 0;
+        font-family: $font-mono;
+        font-size: $font-size-lg;
+        font-weight: 700;
+        color: $navy;
+    }
+}

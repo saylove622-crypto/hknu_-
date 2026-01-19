@@ -1,0 +1,26 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+@use '../../styles/animations';
+
+.loading {
+    @include flex-column-center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 200px;
+    padding: 40px;
+
+    &__spinner {
+        width: 48px;
+        height: 48px;
+        border: 4px solid $gray-200;
+        border-top-color: $aquamarine;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    &__message {
+        font-family: $font-primary;
+        font-size: $font-size-base;
+        color: $gray-500;
+    }
+}

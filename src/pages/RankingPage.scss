@@ -1,0 +1,136 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+@use '../styles/animations';
+
+.ranking-page {
+    min-height: 100vh;
+    @include flex-column;
+    background: $gray-100;
+
+    &__main {
+        flex: 1;
+        @include flex-column;
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 24px 20px;
+
+        @include mobile {
+            padding: 20px 16px;
+        }
+    }
+
+    &__header {
+        text-align: center;
+        margin-bottom: 32px;
+        animation: fadeInUp $animation-slower ease-out;
+    }
+
+    &__title {
+        @include flex-center;
+        gap: 12px;
+        font-family: $font-display;
+        font-size: $font-size-3xl;
+        color: $navy;
+        margin-bottom: 8px;
+
+        @include mobile {
+            font-size: $font-size-2xl;
+        }
+
+        &-icon {
+            font-size: 1em;
+        }
+    }
+
+    &__subtitle {
+        font-family: $font-primary;
+        font-size: $font-size-base;
+        color: $gray-500;
+        margin-bottom: 8px;
+    }
+
+    &__status {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-family: $font-primary;
+        font-size: $font-size-xs;
+        font-weight: 600;
+
+        &--online {
+            background: rgba($success, 0.15);
+            color: $success;
+        }
+
+        &--local {
+            background: rgba($gray-400, 0.2);
+            color: $gray-500;
+        }
+    }
+
+    &__loading {
+        @include flex-column-center;
+        gap: 16px;
+        padding: 60px 20px;
+        text-align: center;
+
+        p {
+            font-family: $font-primary;
+            font-size: $font-size-base;
+            color: $gray-500;
+        }
+    }
+
+    &__spinner {
+        font-size: 40px;
+        animation: spin 1s linear infinite;
+    }
+
+    &__tabs {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 24px;
+        animation: fadeInUp $animation-slower ease-out;
+        animation-delay: 0.1s;
+        animation-fill-mode: both;
+    }
+
+    &__tab {
+        flex: 1;
+        padding: 12px;
+        background: $white;
+        border: $border-width solid $black;
+        font-family: $font-display;
+        font-size: $font-size-base;
+        color: $gray-400;
+        cursor: pointer;
+        transition: all $animation-fast ease;
+        @include neubrutalism-shadow-hover;
+
+        &--active {
+            background: $aquamarine;
+            color: $navy;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 $black;
+        }
+    }
+
+    &__board {
+        flex: 1;
+        animation: fadeInUp $animation-slower ease-out;
+        animation-delay: 0.2s;
+        animation-fill-mode: both;
+    }
+
+    &__actions {
+        margin-top: 32px;
+        animation: fadeInUp $animation-slower ease-out;
+        animation-delay: 0.3s;
+        animation-fill-mode: both;
+
+        a {
+            text-decoration: none;
+        }
+    }
+}

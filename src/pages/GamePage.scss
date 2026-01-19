@@ -1,0 +1,129 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.game-page {
+    min-height: 100vh;
+    @include flex-column;
+    background: $gray-100;
+
+    &__loading {
+        flex: 1;
+        @include flex-center;
+        font-family: $font-primary;
+        color: $gray-500;
+    }
+
+    &__main {
+        flex: 1;
+        @include flex-column;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px;
+
+        @include mobile {
+            padding: 16px;
+        }
+    }
+
+    // ================================
+    // 게임 헤더
+    // ================================
+    &__header {
+        @include flex-between;
+        margin-bottom: 16px;
+
+        @include mobile {
+            flex-direction: column;
+            gap: 12px;
+            align-items: stretch;
+        }
+    }
+
+    &__stage {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        @include mobile {
+            justify-content: center;
+        }
+    }
+
+    &__stage-badge {
+        @include neubrutalism-box-static($aquamarine);
+        padding: 6px 12px;
+        font-family: $font-display;
+        font-size: $font-size-sm;
+    }
+
+    &__stage-title {
+        font-family: $font-primary;
+        font-size: $font-size-lg;
+        font-weight: 600;
+        color: $navy;
+    }
+
+    // ================================
+    // 진행률 바
+    // ================================
+    &__progress {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    &__progress-bar {
+        flex: 1;
+        height: 12px;
+        background: $white;
+        border: $border-width solid $black;
+        border-radius: 0;
+        overflow: hidden;
+    }
+
+    &__progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, $aquamarine 0%, $aquamarine-light 100%);
+        transition: width $animation-normal ease-out;
+    }
+
+    &__progress-text {
+        flex-shrink: 0;
+        font-family: $font-mono;
+        font-size: $font-size-base;
+        font-weight: 700;
+        color: $navy;
+        min-width: 48px;
+        text-align: right;
+    }
+
+    // ================================
+    // 게임 콘텐츠
+    // ================================
+    &__content {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 24px;
+        align-items: start;
+
+        @include tablet {
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+    }
+
+    &__puzzle {
+        @include flex-center;
+    }
+
+    &__hints {
+        width: 100%;
+        max-width: 400px;
+
+        @include tablet {
+            max-width: 100%;
+        }
+    }
+}

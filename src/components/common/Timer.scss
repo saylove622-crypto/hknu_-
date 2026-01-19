@@ -1,0 +1,56 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.timer {
+    @include neubrutalism-box-static($white);
+    @include flex-center;
+    gap: 8px;
+    padding: 8px 16px;
+
+    &__icon {
+        font-size: 1.2em;
+    }
+
+    &__value {
+        font-family: $font-mono;
+        font-weight: 700;
+        color: $navy;
+        letter-spacing: 0.05em;
+    }
+
+    // ================================
+    // 사이즈
+    // ================================
+    &--small {
+        padding: 6px 12px;
+
+        .timer__value {
+            font-size: $font-size-base;
+        }
+    }
+
+    &--medium {
+        padding: 8px 16px;
+
+        .timer__value {
+            font-size: $font-size-xl;
+        }
+    }
+
+    &--large {
+        padding: 12px 24px;
+
+        .timer__value {
+            font-size: $font-size-2xl;
+        }
+    }
+
+    // ================================
+    // 실행 중 상태
+    // ================================
+    &--running {
+        .timer__value {
+            color: $aquamarine-dark;
+        }
+    }
+}
