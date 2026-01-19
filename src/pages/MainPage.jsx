@@ -122,7 +122,7 @@ const MainPage = () => {
             {/* 푸터 */}
             <footer className="main-page__footer">
                 <p className="main-page__version">v1.2.0</p>
-                <p>© 2026 안티그래비티 | 한경국립대학교</p>
+                <p>© 2026 한경국립대학교</p>
             </footer>
         </div>
     );
