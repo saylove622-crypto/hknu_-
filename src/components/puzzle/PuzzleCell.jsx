@@ -43,8 +43,9 @@ const PuzzleCell = ({
 
         isProcessingRef.current = true;
 
-        // 마지막 글자 (완성된 한글)
-        const inputChar = value.trim();
+        // 마지막 글자만 추출 (완성된 한글)
+        const trimmedValue = value.trim();
+        const inputChar = trimmedValue.charAt(trimmedValue.length - 1);
 
         // 한글이 완성되었는지 체크 (조합 중인 자음/모음만 있는 경우 제외)
         // 완성된 한글 유니코드 범위: AC00-D7A3
@@ -59,17 +60,23 @@ const PuzzleCell = ({
 
         setStatus(isCorrect ? 'correct' : 'incorrect');
 
-        setTimeout(() => {
-            setStatus(null);
-            setInputValue('');
-            isProcessingRef.current = false;
-
-            if (isCorrect) {
+        if (isCorrect) {
+            // 정답인 경우: 짧은 피드백 후 즉시 다음으로 이동
+            setTimeout(() => {
+                setStatus(null);
+                setInputValue('');
+                isProcessingRef.current = false;
                 onInput(row, col, inputChar, true);
-            } else {
+            }, 100); // 정답 피드백은 짧게
+        } else {
+            // 오답인 경우: 피드백 보여주고 재시도 가능하게
+            setTimeout(() => {
+                setStatus(null);
+                setInputValue('');
+                isProcessingRef.current = false;
                 onInput(row, col, inputChar, false);
-            }
-        }, GAME_CONFIG.ANIMATION_DURATION.FEEDBACK);
+            }, GAME_CONFIG.ANIMATION_DURATION.FEEDBACK);
+        }
     }, [answer, row, col, onInput]);
 
     // 입력 처리 - 조합 중에는 값만 업데이트
